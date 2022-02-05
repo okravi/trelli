@@ -1,7 +1,8 @@
-package com.okravi.trelli
+package com.okravi.trelli.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.okravi.trelli.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

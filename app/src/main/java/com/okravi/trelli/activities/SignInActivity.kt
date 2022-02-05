@@ -1,17 +1,17 @@
-package com.okravi.trelli
+package com.okravi.trelli.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.okravi.trelli.databinding.ActivitySignUpBinding
+import com.okravi.trelli.R
+import com.okravi.trelli.databinding.ActivitySigninBinding
 
-private var binding: ActivitySignUpBinding? = null
+private var binding: ActivitySigninBinding? = null
 
-class SignUpActivity : AppCompatActivity() {
+class SigninActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivitySignUpBinding.inflate(layoutInflater)
+        binding = ActivitySigninBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
         window.setFlags(
@@ -24,18 +24,17 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun setupActionBar(){
-        setSupportActionBar(binding?.toolbarSignUpActivity)
+        setSupportActionBar(binding?.toolbarSignInActivity)
 
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
         actionBar?.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24dp)
 
-        binding?.toolbarSignUpActivity?.setNavigationOnClickListener {
+        binding?.toolbarSignInActivity?.setNavigationOnClickListener {
             onBackPressed()
         }
 
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

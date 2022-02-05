@@ -1,4 +1,4 @@
-package com.okravi.trelli
+package com.okravi.trelli.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +8,7 @@ import com.okravi.trelli.databinding.ActivityIntroBinding
 
 private var binding: ActivityIntroBinding? = null
 
-class IntroActivity : AppCompatActivity() {
+class IntroActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

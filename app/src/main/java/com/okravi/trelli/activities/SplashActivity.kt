@@ -1,4 +1,4 @@
-package com.okravi.trelli
+package com.okravi.trelli.activities
 
 import android.content.Intent
 import android.graphics.Typeface
