@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "261886406882",
+    "project_id": "trelli-okravi",
+    "storage_bucket": "trelli-okravi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261886406882:android:946e8876c0e29c2871aebb",
+        "android_client_info": {
+          "package_name": "com.okravi.trelli"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261886406882-r6kga9matjbgt9g528diro307a4m2a42.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1NH52bvQjJPWWLyW9luFav2wqrLjDRw4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261886406882-r6kga9matjbgt9g528diro307a4m2a42.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

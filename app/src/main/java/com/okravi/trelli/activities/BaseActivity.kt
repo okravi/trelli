@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -31,7 +30,7 @@ open class BaseActivity : AppCompatActivity() {
     }
 
 
-    fun showProgressDialog(text: String, container: ViewGroup) {
+    fun showProgressDialog(text: String) {
         mProgressDialog = Dialog(this)
         progressDialogBinding = DialogProgressBinding.inflate(layoutInflater)
 
