@@ -11,6 +11,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.okravi.trelli.R
 import com.okravi.trelli.databinding.ActivitySignUpBinding
+import com.okravi.trelli.firebase.FirestoreClass
+import com.okravi.trelli.models.User
 
 private var binding: ActivitySignUpBinding? = null
 
@@ -28,6 +30,19 @@ class SignUpActivity : BaseActivity() {
         setupActionBar()
 
 
+    }
+
+    fun userRegisteredSuccess(){
+        Toast.makeText(
+            this@SignUpActivity,
+            "You have successfully signed up",
+            Toast.LENGTH_SHORT
+        ).show()
+
+
+        hideProgressDialog()
+        FirebaseAuth.getInstance().signOut()
+        finish()
     }
 
     private fun setupActionBar(){
@@ -80,8 +95,6 @@ class SignUpActivity : BaseActivity() {
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
 
-                    hideProgressDialog()
-
                     // If the registration is successfully done
                     if (task.isSuccessful) {
 
@@ -90,15 +103,8 @@ class SignUpActivity : BaseActivity() {
                         // Registered Email
                         val registeredEmail = firebaseUser.email!!
 
-                        Toast.makeText(
-                            this@SignUpActivity,
-                            "$name you have successfully registered with email id $registeredEmail.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-
-                        FirebaseAuth.getInstance().signOut()
-                        // Finish the Sign-Up Screen
-                        finish()
+                        val user = User(firebaseUser.uid, name, registeredEmail)
+                        FirestoreClass().registerUser(this, user)
                     } else {
                         Toast.makeText(
                             this@SignUpActivity,
