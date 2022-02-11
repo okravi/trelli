@@ -13,7 +13,7 @@
             android:name=".activities.BaseActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SigninActivity"
+            android:name=".activities.SignInActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

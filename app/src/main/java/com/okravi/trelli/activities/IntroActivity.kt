@@ -20,7 +20,7 @@ class IntroActivity : BaseActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         binding?.btnSignInIntro?.setOnClickListener {
-            startActivity(Intent(this, SigninActivity::class.java))
+            startActivity(Intent(this, SignInActivity::class.java))
         }
 
         binding?.btnSignUpIntro?.setOnClickListener {

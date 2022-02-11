@@ -11,10 +11,11 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.okravi.trelli.R
 import com.okravi.trelli.databinding.ActivitySigninBinding
+import com.okravi.trelli.models.User
 
 private var binding: ActivitySigninBinding? = null
 
-class SigninActivity : BaseActivity() {
+class SignInActivity : BaseActivity() {
 
     private lateinit var auth: FirebaseAuth
 
@@ -33,6 +34,12 @@ class SigninActivity : BaseActivity() {
             signInRegisteredUser()
         }
         setupActionBar()
+    }
+
+    fun signInSuccess(user: User){
+        hideProgressDialog()
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     private fun setupActionBar(){
