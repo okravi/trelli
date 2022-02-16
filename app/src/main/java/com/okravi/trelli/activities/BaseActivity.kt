@@ -13,6 +13,8 @@ import com.okravi.trelli.R
 import com.okravi.trelli.databinding.ActivityBaseBinding
 import com.okravi.trelli.databinding.DialogProgressBinding
 
+private var binding: ActivityBaseBinding? = null
+
 open class BaseActivity : AppCompatActivity() {
 
     private var doubleBackToExitPressedOnce = false
@@ -20,13 +22,13 @@ open class BaseActivity : AppCompatActivity() {
     private lateinit var mProgressDialog: Dialog
     private lateinit var progressDialogBinding: DialogProgressBinding
 
-    private lateinit var binding: ActivityBaseBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBaseBinding.inflate(layoutInflater)
 
-        setContentView(binding.root)
+        setContentView(binding?.root)
     }
 
 
@@ -80,4 +82,8 @@ open class BaseActivity : AppCompatActivity() {
         snackBar.show()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
+    }
 }
