@@ -1,9 +1,11 @@
 package com.okravi.trelli.firebase
 
+import android.app.Activity
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.okravi.trelli.activities.MainActivity
 import com.okravi.trelli.activities.SignInActivity
 import com.okravi.trelli.activities.SignUpActivity
 
@@ -25,16 +27,23 @@ class FirestoreClass {
             }
     }
 
-    fun signInUser(activity: SignInActivity){
+    fun signInUser(activity: Activity){
         mFirestore.collection(Constants.USERS)
             .document(getCurrentUserId())
             .get()
             .addOnSuccessListener { document ->
-                val loggedUser = document.toObject(User::class.java)
+                val loggedInUser = document.toObject(User::class.java)!!
 
-                if (loggedUser != null) {
-                    activity.signInSuccess(loggedUser)
+                when(activity){
+                    is SignInActivity ->{
+                        activity.signInSuccess(loggedInUser)
+                    }
+
+                    is MainActivity ->{
+                        activity.updateNavigationUserDetails(loggedInUser)
+                    }
                 }
+
             }.addOnFailureListener {
                     e->
                 Log.e(activity.javaClass.simpleName, "Error signing in user")

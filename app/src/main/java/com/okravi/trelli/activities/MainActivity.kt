@@ -6,13 +6,17 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.view.GravityCompat
+import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.okravi.trelli.R
 import com.okravi.trelli.databinding.ActivityBaseBinding
 import com.okravi.trelli.databinding.ActivityMainBinding
+import com.okravi.trelli.databinding.NavHeaderMainBinding
+import com.okravi.trelli.models.User
 
 private var binding: ActivityMainBinding? = null
+private var navViewHeaderBinding : NavHeaderMainBinding? = null
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,8 +25,12 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
+        val viewHeader = binding?.navView?.getHeaderView(0)
+        navViewHeaderBinding = NavHeaderMainBinding.bind(viewHeader!!)
+
         setUpActionBar()
         binding?.navView?.setNavigationItemSelectedListener(this)
+
     }
 
     private fun setUpActionBar() {
@@ -43,6 +51,16 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }else{
             binding?.drawerLayout?.openDrawer(GravityCompat.START)
         }
+    }
+
+    fun updateNavigationUserDetails(user: User){
+        Glide
+            .with(this)
+            .load(user.image)
+            .centerCrop()
+            .placeholder(R.drawable.loading_spinner)
+            .into(navViewHeaderBinding?.ivUserImage)
+
     }
 
     override fun onBackPressed() {
