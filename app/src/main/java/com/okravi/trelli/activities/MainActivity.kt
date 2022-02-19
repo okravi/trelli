@@ -13,6 +13,7 @@ import com.okravi.trelli.R
 import com.okravi.trelli.databinding.ActivityBaseBinding
 import com.okravi.trelli.databinding.ActivityMainBinding
 import com.okravi.trelli.databinding.NavHeaderMainBinding
+import com.okravi.trelli.firebase.FirestoreClass
 import com.okravi.trelli.models.User
 
 private var binding: ActivityMainBinding? = null
@@ -30,6 +31,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         setUpActionBar()
         binding?.navView?.setNavigationItemSelectedListener(this)
+
+        FirestoreClass().signInUser(this)
 
     }
 
@@ -58,8 +61,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             .with(this)
             .load(user.image)
             .centerCrop()
-            .placeholder(R.drawable.loading_spinner)
-            .into(navViewHeaderBinding?.ivUserImage)
+            .placeholder(R.drawable.ic_user_place_holder)
+            .into(navViewHeaderBinding?.ivUserImage!!)
+
+        navViewHeaderBinding?.tvUsername?.text = user.name
 
     }
 
