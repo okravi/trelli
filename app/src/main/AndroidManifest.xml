@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Trelli">
         <activity
+            android:name=".activities.MyProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="false" />
+        <activity
             android:name=".activities.BaseActivity"
             android:exported="false" />
         <activity
