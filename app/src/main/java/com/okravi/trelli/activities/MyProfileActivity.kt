@@ -1,10 +1,11 @@
 package com.okravi.trelli.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.view.GravityCompat
+import com.bumptech.glide.Glide
 import com.okravi.trelli.R
 import com.okravi.trelli.databinding.ActivityMyProfileBinding
+import com.okravi.trelli.firebase.FirestoreClass
+import com.okravi.trelli.models.User
 
 private var binding: ActivityMyProfileBinding? = null
 
@@ -15,6 +16,8 @@ class MyProfileActivity : BaseActivity() {
         setContentView(binding?.root)
 
         setUpActionBar()
+
+        FirestoreClass().loadUserData(this)
     }
 
     private fun setUpActionBar() {
@@ -29,6 +32,22 @@ class MyProfileActivity : BaseActivity() {
         }
 
         toolbarMainActivity?.setNavigationOnClickListener { onBackPressed() }
+    }
+
+    fun setUserDataInUI(user: User){
+        Glide
+            .with(this)
+            .load(user.image)
+            .centerCrop()
+            .placeholder(R.drawable.ic_user_place_holder)
+            .into(binding?.ivUserImage!!)
+
+        binding?.etName?.setText(user.name)
+        binding?.etEmail?.setText(user.email)
+
+        if (user.mobile != 0L){
+            binding?.etMobile?.setText(user.mobile.toString())
+        }
     }
 
 

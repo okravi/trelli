@@ -6,6 +6,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.okravi.trelli.activities.MainActivity
+import com.okravi.trelli.activities.MyProfileActivity
 import com.okravi.trelli.activities.SignInActivity
 import com.okravi.trelli.activities.SignUpActivity
 
@@ -27,7 +28,7 @@ class FirestoreClass {
             }
     }
 
-    fun signInUser(activity: Activity){
+    fun loadUserData(activity: Activity){
         mFirestore.collection(Constants.USERS)
             .document(getCurrentUserId())
             .get()
@@ -41,6 +42,10 @@ class FirestoreClass {
 
                     is MainActivity ->{
                         activity.updateNavigationUserDetails(loggedInUser)
+                    }
+
+                    is MyProfileActivity ->{
+                        activity.setUserDataInUI(loggedInUser)
                     }
                 }
 

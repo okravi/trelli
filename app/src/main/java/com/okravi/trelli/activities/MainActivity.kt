@@ -1,16 +1,13 @@
 package com.okravi.trelli.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.core.view.GravityCompat
 import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.okravi.trelli.R
-import com.okravi.trelli.databinding.ActivityBaseBinding
 import com.okravi.trelli.databinding.ActivityMainBinding
 import com.okravi.trelli.databinding.NavHeaderMainBinding
 import com.okravi.trelli.firebase.FirestoreClass
@@ -32,7 +29,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         setUpActionBar()
         binding?.navView?.setNavigationItemSelectedListener(this)
 
-        FirestoreClass().signInUser(this)
+        FirestoreClass().loadUserData(this)
 
     }
 
